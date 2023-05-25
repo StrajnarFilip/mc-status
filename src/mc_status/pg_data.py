@@ -1,24 +1,20 @@
 import psycopg
-import os
-
-def _get_env(environment_variable: str, default: str):
-    result = os.getenv(environment_variable)
-    return result if result != None else default
+from util import get_env
 
 def _pg_db():
-    return _get_env("PG_DBNAME", "postgres")
+    return get_env("PG_DBNAME", "postgres")
 
 def _pg_user():
-    return _get_env("PG_USER", "postgres")
+    return get_env("PG_USER", "postgres")
 
 def _pg_password():
-    return _get_env("PG_PASSWORD", "postgres")
+    return get_env("PG_PASSWORD", "postgres")
 
 def _pg_host():
-    return _get_env("PG_HOST", "127.0.0.1")
+    return get_env("PG_HOST", "127.0.0.1")
 
 def _pg_port():
-    return _get_env("PG_PORT", "5432")
+    return get_env("PG_PORT", "5432")
 
 def get_connection() -> psycopg.Connection:
     return psycopg.connect(
