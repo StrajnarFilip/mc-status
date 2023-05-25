@@ -4,9 +4,10 @@ from time import sleep
 
 connection = pg_data.get_connection()
 pg_data.setup(connection)
+server = minestat.MineStat("109.123.245.24", 25565)
 
 while True:
-    server = minestat.MineStat("109.123.245.24", 25565)
+    server.json_query()
     cursor = connection.cursor()
     print(server.player_list)
     print(server.latency)
@@ -15,4 +16,4 @@ while True:
         str(server.current_players if server.current_players != None else 0),
         str(server.latency)
         ])
-    sleep(2)
+    sleep(5)
