@@ -38,5 +38,14 @@ def setup(connection: psycopg.Connection):
         checked_at timestamp DEFAULT now(),
         server_online boolean,
         players int,
-        latency int)
+        latency int
+        )
+    """)
+
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS user_online (
+        id bigserial PRIMARY KEY,
+        status_id bigint references status(id),
+        player_name TEXT
+        )
     """)
